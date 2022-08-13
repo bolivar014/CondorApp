@@ -25,25 +25,27 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 10px">#</th>
-                                            <th>Nombre</th>
-                                            <th>Departamento</th>
+                                            <th style="width: 240px">Nombre</th>
+                                            <th style="width: 130px">Departamento</th>
                                             <th style="width: 70px">&nbsp;&nbsp;Opciones&nbsp;&nbsp;</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($employees as $employee)
                                             <tr>
-                                                <td>1</td>
-                                                <td>1</td>
-                                                <td>1</td>
+                                                <td>{{ $employee->id }}</td>
+                                                <td>{{ $employee->name . " " . $employee->lastname }}</td>
+                                                <td>{{ $employee->departament_id }}</td>
                                                 <td>
                                                     <!-- Ver -->
-                                                    <a href="{{ url('') }}" class="badge badge-success" title="Vér"><i class="fas fa-eye"></i></a>
+                                                    <a href="#" class="badge badge-success" title="Vér"><i class="fas fa-eye"></i></a>
                                                     <!-- Editar -->
-                                                    <a href="{{ url('') }}" class="badge badge-primary" title="Editar"><i class="fas fa-pencil-alt"></i></a>
+                                                    <a href="#" class="badge badge-primary" title="Editar"><i class="fas fa-pencil-alt"></i></a>
                                                     <!-- Eliminar
                                                     <a href="{{ url('') }}" class="badge badge-danger" title="Eliminar"><i class="fas fa-trash-alt"></i></a> -->
                                                 </td>
                                             </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
