@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\DepartamentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,3 +24,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // Ruta de recursos compartidos employees
 Route::resource('/employees', EmployeeController::class);
+
+// Ruta de recursos compartidos departaments
+Route::resource('/departaments', DepartamentController::class);
