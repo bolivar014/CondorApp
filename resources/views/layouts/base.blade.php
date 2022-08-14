@@ -168,6 +168,30 @@
                         <!-- /.sidebar-menu -->
                         <nav class="mt-2">
                             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                                <li class="nav-item menu-open">
+                                    <a href="#" class="nav-link active">
+                                        <i class="nav-icon fas fa-cog"></i>
+                                        <p>
+                                          Helpers
+                                          <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="{{ url('/departaments') }}" class="nav-link">
+                                                <i class="nav-icon fas fa-network-wired"></i>
+                                                <p>Departamentos</p>
+                                            </a>
+                                        </li>
+                                        <!--
+                                        <li class="nav-item">
+                                            <a href="{{ url('/type_docs') }}" class="nav-link">
+                                                <i class="nav-icon fas fa-project-diagram"></i>
+                                                <p>Tipo de documentos</p>
+                                            </a>
+                                        </li>
+                                        -->
+                                    </ul>
                                 <li class="nav-item">
                                     <a href="{{ url('/employees') }}" class="nav-link">
                                         <i class="nav-icon fas fa-user"></i> 
