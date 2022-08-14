@@ -80,7 +80,11 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        // Consultamos datos del id de empleado
+        $employee = employee::findOrFail($id);
+
+        // Retornamos respuesta
+        return response()->json($employee);
     }
 
     /**

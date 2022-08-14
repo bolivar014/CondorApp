@@ -40,7 +40,7 @@
                                                     <!-- Ver -->
                                                     <a href="#" class="badge badge-success detail" title="Vér" data-toggle="modal" data-idEmployee="{{ $employee->id }}" data-empURL="{{ url('/employees/' . $employee->id) }}" data-target="#modal-defaultShow"><i class="fas fa-eye"></i></a>
                                                     <!-- Editar -->
-                                                    <a href="#" class="badge badge-primary" title="Editar"><i class="fas fa-pencil-alt"></i></a>
+                                                    <a href="#" class="badge badge-primary editEmployee" title="Editar" data-toggle="modal" data-target="#modal-defaultEdit" data-idEmployee="{{ $employee->id }}" data-empURL="{{ url('/employees/' . $employee->id . '/edit') }}"><i class="fas fa-pencil-alt"></i></a>
                                                     <!-- Eliminar
                                                     <a href="{{ url('') }}" class="badge badge-danger" title="Eliminar"><i class="fas fa-trash-alt"></i></a> -->
                                                 </td>
@@ -80,7 +80,7 @@
                                                       <span class="input-group-text"><i class="fas fa-quote-right"></i></span>
                                                     </div>
                                                     <select name="selTipoDoc" id="selTipoDoc" class="form-control" required>
-                                                        <option value="">Tipo documento</option>
+                                                        <option value="" selected disabled>Tipo documento</option>
                                                         <option value="1">CC</option>
                                                         <option value="2">Cedula Extranjería</option>
                                                         <option value="3">Pasaporte</option>
@@ -129,7 +129,7 @@
                                                       <span class="input-group-text"><i class="fas fa-network-wired"></i></span>
                                                     </div>
                                                     <select name="selTipoDepartament" id="selTipoDepartament" class="form-control" required>
-                                                        <option value="">Seleccione Area</option>
+                                                        <option value="" selected disabled>Seleccione Area</option>
                                                         <option value="1">Calidad</option>
                                                         <option value="2">Comercial</option>
                                                         <option value="3">Contabilidad</option>
@@ -224,6 +224,97 @@
                         </div>
                     </div>
                 <!-- END MODAL SHOW EMPLOYEE -->
+                <!-- MODAL EDIT EMPLOYEE -->
+                    <div class="modal fade" id="modal-defaultEdit">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Editar Empleado</h4>
+                                    <button type="button" class="close" id="close" name="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{{ url('/employees') }}" method="POST" id="formCreateEmployee" name="formCreateEmployee" onSubmit="return false;">
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <input type="hidden" value="{{csrf_token()}}" name="_token" id="token">
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-quote-right"></i></span>
+                                                    </div>
+                                                    <select name="selTipoDocEdit" id="selTipoDocEdit" class="form-control" required>
+                                                        <option value="" disabled>Tipo documento</option>
+                                                        <option value="1">CC</option>
+                                                        <option value="2">Cedula Extranjería</option>
+                                                        <option value="3">Pasaporte</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Numero Doc" id="txtNumDocEdit" name="txtNumDocEdit" required minlength="4" maxlength="13">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Nombres" id="txtNameEdit" name="txtNameEdit" required minlength="4" maxlength="50">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Apellidos" id="txtLastnameEdit" name="txtLastnameEdit" required minlength="4" maxlength="50">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                                    </div>
+                                                    <input type="date" class="form-control" placeholder="Fecha Nac" id="txtDateBirthEdit" name="txtDateBirthEdit" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-network-wired"></i></span>
+                                                    </div>
+                                                    <select name="selTipoDepartamentEdit" id="selTipoDepartamentEdit" class="form-control" required>
+                                                        <option value="" disabled>Seleccione Area</option>
+                                                        <option value="1">Calidad</option>
+                                                        <option value="2">Comercial</option>
+                                                        <option value="3">Contabilidad</option>
+                                                        <option value="4">Financiera</option>
+                                                        <option value="5">RRHH</option>
+                                                        <option value="6">Servicios Generales</option>
+                                                        <option value="7">Sistemas</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer justify-content-between">
+                                        <button type="button" id="close2" name="close2" class="btn btn-danger" data-dismiss="modal">Salir</button>
+                                        <button type="submit" class="btn btn-primary">Editar empleado</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                <!-- END MODAL EDIT EMPLOYEE -->
             </div>
         </section>
     @endsection

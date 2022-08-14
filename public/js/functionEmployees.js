@@ -116,11 +116,49 @@ $(".detail").click(function(){
 });
 
 // Limpiamos campos del formulario
-$('#close3, $close4').on('click', function(){
+$('#close3, #close4').on('click', function(){
     $('#selTipoDocShow').val('');
     $('#txtNumDocShow').val('');
     $('#txtNameShow').val('');
     $('#txtLastnameShow').val('');
     $('#txtDateBirthShow').val('');
     $('#selTipoDepartamentShow').val('');
+});
+
+// 
+$('.editEmployee').click(function() {
+    let id = $(this).attr("data-idEmployee");
+    let URL = $(this).attr("data-empURL");
+    var _token = $("input[name=_token]").val();
+
+     // Ejecutamos ajax
+     $.ajax({
+        url: URL,
+        type: 'GET',
+        data: {
+            'id': id,
+            '_token': _token
+        },
+        dataType: 'json',
+        success: function(response) {
+            console.log('success - edit Employee');
+            console.log(response);
+
+            $('#selTipoDocEdit').val(response.type_doc);
+            $('#txtNumDocEdit').val(response.num_doc);
+            $('#txtNameEdit').val(response.name);
+            $('#txtLastnameEdit').val(response.lastname);
+            $('#txtDateBirthEdit').val(response.date_of_birth);
+            $('#selTipoDepartamentEdit').val(response.departament_id);
+        },
+        error: function(resp) {
+            console.log('error - edit employee');
+            console.log(resp.responseText);
+            // Swal.fire({
+            //     icon: 'error',
+            //     title: 'Oops...',
+            //     text: 'Se ha presentado un error interno',
+            // })
+        }
+    })
 });
