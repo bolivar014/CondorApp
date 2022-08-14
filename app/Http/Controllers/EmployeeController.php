@@ -18,10 +18,15 @@ class EmployeeController extends Controller
         $departaments = DB::table('departaments')
         ->select('id', 'departament')
         ->get();
+       
+        $employees = DB::table('employees')
+        ->join('departaments', 'departaments.id', '=', 'employees.departament_id')
+        ->select('employees.id', 'employees.name', 'employees.lastname', 'departaments.departament')
+        ->paginate(4);
         
         //
         return view('employee.index', [
-            'employees' => employee::paginate(4),
+            'employees' => $employees,
             'departaments' => $departaments
         ]);
     }

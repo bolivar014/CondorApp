@@ -35,7 +35,7 @@
                                             <tr>
                                                 <td>{{ $employee->id }}</td>
                                                 <td>{{ $employee->name . " " . $employee->lastname }}</td>
-                                                <td>{{ $employee->departament_id }}</td>
+                                                <td>{{ $employee->departament }}</td>
                                                 <td>
                                                     <!-- Ver -->
                                                     <a href="#" class="badge badge-success detail" title="Vér" data-toggle="modal" data-idEmployee="{{ $employee->id }}" data-empURL="{{ url('/employees/' . $employee->id) }}" data-target="#modal-defaultShow"><i class="fas fa-eye"></i></a>
