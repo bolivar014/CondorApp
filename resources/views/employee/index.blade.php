@@ -130,13 +130,9 @@
                                                     </div>
                                                     <select name="selTipoDepartament" id="selTipoDepartament" class="form-control" required>
                                                         <option value="" selected disabled>Seleccione Area</option>
-                                                        <option value="1">Calidad</option>
-                                                        <option value="2">Comercial</option>
-                                                        <option value="3">Contabilidad</option>
-                                                        <option value="4">Financiera</option>
-                                                        <option value="5">RRHH</option>
-                                                        <option value="6">Servicios Generales</option>
-                                                        <option value="7">Sistemas</option>
+                                                        @foreach ($departaments as $departament)
+                                                            <option value="{{ $departament->id }}">{{ $departament->departament }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
@@ -212,7 +208,13 @@
                                                     <div class="input-group-prepend">
                                                       <span class="input-group-text"><i class="fas fa-network-wired"></i></span>
                                                     </div>
-                                                    <input type="text" name="selTipoDepartamentShow" id="selTipoDepartamentShow" class="form-control" placeholder="Departamento" readonly>
+                                                    <!--<input type="text" name="selTipoDepartamentShow" id="selTipoDepartamentShow" class="form-control" placeholder="Departamento" readonly>-->
+                                                    <select name="selTipoDepartamentShow" id="selTipoDepartamentShow" class="form-control" disabled>
+                                                        <option value="">Seleccione Area</option>
+                                                        @foreach ($departaments as $departament)
+                                                            <option value="{{ $departament->id }}">{{ $departament->departament }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -238,7 +240,7 @@
                                     <div class="modal-body">
                                         <div class="row">
                                             @method('put')
-                                            <input type="text" id="urlEditEmployee" name="urlEditEmployee" class="form-control" placeholder="URL">
+                                            <input type="hidden" id="urlEditEmployee" name="urlEditEmployee" class="form-control" placeholder="URL">
                                             {{ method_field('put') }}
                                             <input type="hidden" value="{{csrf_token()}}" name="_token" id="token">
                                             <div class="col-md-6">
@@ -297,13 +299,9 @@
                                                     </div>
                                                     <select name="selTipoDepartamentEdit" id="selTipoDepartamentEdit" class="form-control" required>
                                                         <option value="" disabled>Seleccione Area</option>
-                                                        <option value="1">Calidad</option>
-                                                        <option value="2">Comercial</option>
-                                                        <option value="3">Contabilidad</option>
-                                                        <option value="4">Financiera</option>
-                                                        <option value="5">RRHH</option>
-                                                        <option value="6">Servicios Generales</option>
-                                                        <option value="7">Sistemas</option>
+                                                        @foreach ($departaments as $departament)
+                                                            <option value="{{ $departament->id }}">{{ $departament->departament }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>

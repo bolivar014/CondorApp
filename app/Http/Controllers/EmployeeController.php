@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\employee;
+use App\Models\Departament;
+use Illuminate\Support\Facades\DB;
 class EmployeeController extends Controller
 {
     /**
@@ -13,9 +15,14 @@ class EmployeeController extends Controller
      */
     public function index()
     {
+        $departaments = DB::table('departaments')
+        ->select('id', 'departament')
+        ->get();
+        
         //
         return view('employee.index', [
-            'employees' => employee::paginate(4)
+            'employees' => employee::paginate(4),
+            'departaments' => $departaments
         ]);
     }
 
