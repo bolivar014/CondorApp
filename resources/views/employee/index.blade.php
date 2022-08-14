@@ -38,7 +38,7 @@
                                                 <td>{{ $employee->departament_id }}</td>
                                                 <td>
                                                     <!-- Ver -->
-                                                    <a href="#" class="badge badge-success" title="Vér"><i class="fas fa-eye"></i></a>
+                                                    <a href="#" class="badge badge-success detail" title="Vér" data-toggle="modal" data-idEmployee="{{ $employee->id }}" data-empURL="{{ url('/employees/' . $employee->id) }}" data-target="#modal-defaultShow"><i class="fas fa-eye"></i></a>
                                                     <!-- Editar -->
                                                     <a href="#" class="badge badge-primary" title="Editar"><i class="fas fa-pencil-alt"></i></a>
                                                     <!-- Eliminar
@@ -151,6 +151,79 @@
                         </div>
                     </div>
                 <!-- END MODAL ADD EMPLOYEE -->
+                <!-- MODAL SHOW EMPLOYEE -->
+                    <div class="modal fade" id="modal-defaultShow">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Información del Empleado</h4>
+                                    <button type="button" class="close" id="close3" name="close3" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text"><i class="fas fa-quote-right"></i></span>
+                                                    </div>
+                                                    <input type="text" name="selTipoDocShow" id="selTipoDocShow" class="form-control" placeholder="Tipo documento" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Numero Doc" id="txtNumDocShow" name="txtNumDocShow" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Nombres" id="txtNameShow" name="txtNameShow" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Apellidos" id="txtLastnameShow" name="txtLastnameShow" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                                    </div>
+                                                    <input type="date" class="form-control" placeholder="Fecha Nac" id="txtDateBirthShow" name="txtDateBirthShow" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text"><i class="fas fa-network-wired"></i></span>
+                                                    </div>
+                                                    <input type="text" name="selTipoDepartamentShow" id="selTipoDepartamentShow" class="form-control" placeholder="Departamento" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer justify-content-between">
+                                        <button type="button" id="close4" name="close4" class="btn btn-danger" data-dismiss="modal">Salir</button>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- END MODAL SHOW EMPLOYEE -->
             </div>
         </section>
     @endsection

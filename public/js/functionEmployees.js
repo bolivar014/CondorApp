@@ -75,3 +75,52 @@ $('#close2, #close').on('click', function(){
     // $('#selTipoDepartament').val('').trigger('change');
     $('select[name="selTipoDepartament"]').prop('selectedIndex',0);
 });
+
+// Obtenemos dataid para generar consulta para extraer datos
+$(".detail").click(function(){
+    // Recupero dataid a consultar
+    let id = $(this).attr("data-idEmployee");
+    let URL = $(this).attr("data-empURL");
+    var _token = $("input[name=_token]").val();
+    
+    // Ejecutamos ajax
+    $.ajax({
+        url: URL,
+        type: 'GET',
+        data: {
+            'id': id,
+            '_token': _token
+        },
+        dataType: 'json',
+        success: function(response) {
+            // console.log('success - show Employee');
+            // console.log(response);
+
+            $('#selTipoDocShow').val(response.type_doc);
+            $('#txtNumDocShow').val(response.num_doc);
+            $('#txtNameShow').val(response.name);
+            $('#txtLastnameShow').val(response.lastname);
+            $('#txtDateBirthShow').val(response.date_of_birth);
+            $('#selTipoDepartamentShow').val(response.departament_id);
+        },
+        error: function(resp) {
+            // console.log('error - show employee');
+            // console.log(resp.responseText);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Se ha presentado un error interno',
+            })
+        }
+    })
+});
+
+// Limpiamos campos del formulario
+$('#close3, $close4').on('click', function(){
+    $('#selTipoDocShow').val('');
+    $('#txtNumDocShow').val('');
+    $('#txtNameShow').val('');
+    $('#txtLastnameShow').val('');
+    $('#txtDateBirthShow').val('');
+    $('#selTipoDepartamentShow').val('');
+});
