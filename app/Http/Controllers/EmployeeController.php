@@ -45,7 +45,7 @@ class EmployeeController extends Controller
         $employee->name = $request->get('txtName');
         $employee->lastname = $request->get('txtLastname');
         $employee->date_of_birth = $request->get('txtDateBirth');
-        $employee->departament_id = $request->get('selTipoDoc');
+        $employee->departament_id = $request->get('selTipoDepartament');
 
         $employee->save();
 

@@ -49,6 +49,11 @@
                                     </tbody>
                                 </table>
                             </div>
+                            @if(count($employees))
+                                <div class="mt-2 mx-auto">
+                                    {{ $employees->links('pagination::bootstrap-4') }}
+                                </div>
+                            @endif
                             <!-- /.card-body -->
                         </div>
                         <!-- /.card -->
@@ -61,7 +66,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h4 class="modal-title">Agregar Empleado</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="close" id="close" name="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
@@ -123,7 +128,7 @@
                                                     <div class="input-group-prepend">
                                                       <span class="input-group-text"><i class="fas fa-network-wired"></i></span>
                                                     </div>
-                                                    <select name="selTipoDoc" id="selTipoDoc" class="form-control" required>
+                                                    <select name="selTipoDepartament" id="selTipoDepartament" class="form-control" required>
                                                         <option value="">Seleccione Area</option>
                                                         <option value="1">Calidad</option>
                                                         <option value="2">Comercial</option>
@@ -138,7 +143,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer justify-content-between">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Salir</button>
+                                        <button type="button" id="close2" name="close2" class="btn btn-danger" data-dismiss="modal">Salir</button>
                                         <button type="submit" class="btn btn-primary">Crear empleado</button>
                                     </div>
                                 </form>

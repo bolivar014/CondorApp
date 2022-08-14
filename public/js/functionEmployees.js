@@ -1,3 +1,4 @@
+// Evento para la creación de empleados
 $('#formCreateEmployee').on('submit', function(e) {
     e.preventDefault();
     // Recolectamos valores del formulario
@@ -6,7 +7,7 @@ $('#formCreateEmployee').on('submit', function(e) {
     var txtName = $('#txtName').val();
     var txtLastname = $('#txtLastname').val();
     var txtDateBirth = $('#txtDateBirth').val();
-    var selTipoDoc = $('#selTipoDoc').val();
+    var selTipoDepartament = $('#selTipoDepartament').val();
     var _token = $("input[name=_token]").val();
     var action = document.getElementById('formCreateEmployee').action;
     
@@ -20,7 +21,7 @@ $('#formCreateEmployee').on('submit', function(e) {
             'txtName': txtName,
             'txtLastname': txtLastname,
             'txtDateBirth': txtDateBirth,
-            'selTipoDoc': selTipoDoc,
+            'selTipoDepartament': selTipoDepartament,
             '_token': _token
         },
         dataType: 'json',
@@ -54,6 +55,23 @@ $('#formCreateEmployee').on('submit', function(e) {
         error: function(resp){
             // console.log('error - create employee');
             // console.log(resp.responseText);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Se ha presentado un error interno',
+            })
         },
     })
+});
+
+// Evento para limpiar modal - Crear empleados
+$('#close2, #close').on('click', function(){
+    // $('#selTipoDoc').val('').trigger('change');
+    $('select[name="selTipoDoc"]').prop('selectedIndex',0);
+    $('#txtNumDoc').val('');
+    $('#txtName').val('');
+    $('#txtLastname').val('');
+    $('#txtDateBirth').val('');
+    // $('#selTipoDepartament').val('').trigger('change');
+    $('select[name="selTipoDepartament"]').prop('selectedIndex',0);
 });
