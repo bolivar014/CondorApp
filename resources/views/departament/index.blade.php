@@ -104,6 +104,8 @@
                                 <form action="#" method="POST" id="formEditDepartament" name="formEditDepartament" onSubmit="return false;">
                                     <div class="modal-body">
                                         <div class="row">
+                                            <input type="hidden" id="urlEditDepartament" name="urlEditDepartament" class="form-control" placeholder="URL">
+                                            {{ method_field('put') }}
                                             <input type="hidden" value="{{csrf_token()}}" name="_token" id="token">
                                             <div class="col-md-6">
                                                 <div class="input-group mb-3">

@@ -92,6 +92,17 @@ class DepartamentController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $departament = Departament::findOrFail($id);
+
+        $departament->departament = $request->get('txtNameDepartamentEdit');
+
+        $departament->save();
+
+        if($departament) {
+            return response()->json('Actualizado exitosamente');
+        } else {
+            return response()->json('no se ha actualizado');
+        }
     }
 
     /**

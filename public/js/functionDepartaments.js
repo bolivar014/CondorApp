@@ -65,6 +65,7 @@ $('.editDepartament').click(function() {
     let id = $(this).attr("data-idDepartament");
     let URL = $(this).attr("data-empURL");
     var _token = $("input[name=_token]").val();
+    $('#urlEditDepartament').val(URL);
 
     // Ejecutamos ajax
     $.ajax({
@@ -76,19 +77,75 @@ $('.editDepartament').click(function() {
         },
         dataType: 'json',
         success: function(response) {
-            console.log('success - edit departament');
-            console.log(response);
+            // console.log('success - edit departament');
+            // console.log(response);
 
             $('#txtNameDepartamentEdit').val(response.departament);
         },
         error: function(resp) {
-            console.log('error - edit departament');
-            console.log(resp.responseText);
-            // Swal.fire({
-            //     icon: 'error',
-            //     title: 'Oops...',
-            //     text: 'Se ha presentado un error interno',
-            // })
+            // console.log('error - edit departament');
+            // console.log(resp.responseText);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Se ha presentado un error interno',
+            })
         }
+    })
+});
+
+// 
+$('#formEditDepartament').on('submit', function(e) {
+    e.preventDefault();
+    // Recolectamos valores del formulario
+    var txtNameDepartamentEdit = $('#txtNameDepartamentEdit').val();
+    var _token = $("input[name=_token]").val();
+    var action = $('#urlEditDepartament').val();
+    
+    // Ejecutamos ajax
+    $.ajax({
+        url: action,
+        type: 'PUT',
+        data: {
+            'txtNameDepartamentEdit': txtNameDepartamentEdit,
+            '_token': _token
+        },
+        dataType: 'json',
+        success: function(response){
+            // console.log('response - editt employee');
+            // console.log(response);
+            // Validamos la ejecución
+            if(response == "Actualizado exitosamente") {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Se ha actualizado correctamente',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
+                // Refrezcamos interfaz
+                setTimeout(() => {
+                    location.reload();
+                }, 2000);
+            } else {
+                // Error cuando no se crea el registro
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Se ha presentado un error al intentar actualizar el registro',
+                })
+            }
+        },
+        error: function(resp){
+            // console.log('error - editt employee');
+            // console.log(resp.responseText);
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Se ha presentado un error interno',
+            })
+        },
     })
 });
