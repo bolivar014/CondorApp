@@ -8,6 +8,11 @@ use App\Models\Departament;
 use Illuminate\Support\Facades\DB;
 class EmployeeController extends Controller
 {
+    // Control de rutas - middleware auth
+    public function __construct() {
+        return $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
