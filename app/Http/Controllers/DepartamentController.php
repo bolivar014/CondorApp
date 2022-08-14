@@ -63,6 +63,9 @@ class DepartamentController extends Controller
     public function show($id)
     {
         //
+        $departament = Departament::findOrFail($id);
+
+        return response()->json($departament);
     }
 
     /**
@@ -74,6 +77,9 @@ class DepartamentController extends Controller
     public function edit($id)
     {
         //
+        $departament = Departament::findOrFail($id);
+
+        return response()->json($departament);
     }
 
     /**

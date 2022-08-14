@@ -40,7 +40,7 @@
                                                     <!-- Ver -->
                                                     <a href="#" class="badge badge-success" title="Vér"><i class="fas fa-eye"></i></a>
                                                     <!-- Editar -->
-                                                    <a href="#" class="badge badge-primary" title="Editar"><i class="fas fa-pencil-alt"></i></a>
+                                                    <a href="#" class="badge badge-primary editDepartament" title="Editar" data-toggle="modal" data-target="#modal-defaultEdit" data-idDepartament="{{ $departament->id }}" data-empURL="{{ url('/departaments/' . $departament->id) }}"><i class="fas fa-pencil-alt"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -91,6 +91,39 @@
                         </div>
                     </div>
                 <!-- END MODAL ADD DEPARTAMENT -->
+                <!-- MODAL EDIT DEPARTAMENT -->
+                    <div class="modal fade" id="modal-defaultEdit">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Editar Departamento</h4>
+                                    <button type="button" class="close" id="close7" name="close7" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="#" method="POST" id="formEditDepartament" name="formEditDepartament" onSubmit="return false;">
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <input type="hidden" value="{{csrf_token()}}" name="_token" id="token">
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Nombre departamento" id="txtNameDepartamentEdit" name="txtNameDepartamentEdit" required minlength="4" maxlength="45">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer justify-content-between">
+                                        <button type="button" id="close8" name="close8" class="btn btn-danger" data-dismiss="modal">Salir</button>
+                                        <button type="submit" class="btn btn-primary">Editar departamento</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                <!-- END MODAL EDIT DEPARTAMENT -->
             </div>
         </section>
     @endsection

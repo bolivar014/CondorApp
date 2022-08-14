@@ -59,3 +59,36 @@ $('#formCreateDepartament').on('submit', function(e) {
 $('#close7, #close8').on('click', function(){
     $('#txtNameDepartament').val('');
 });
+
+// Evento para abrir el visualizador de edición
+$('.editDepartament').click(function() {
+    let id = $(this).attr("data-idDepartament");
+    let URL = $(this).attr("data-empURL");
+    var _token = $("input[name=_token]").val();
+
+    // Ejecutamos ajax
+    $.ajax({
+        url: URL,
+        type: 'GET',
+        data: {
+            'id': id,
+            '_token': _token
+        },
+        dataType: 'json',
+        success: function(response) {
+            console.log('success - edit departament');
+            console.log(response);
+
+            $('#txtNameDepartamentEdit').val(response.departament);
+        },
+        error: function(resp) {
+            console.log('error - edit departament');
+            console.log(resp.responseText);
+            // Swal.fire({
+            //     icon: 'error',
+            //     title: 'Oops...',
+            //     text: 'Se ha presentado un error interno',
+            // })
+        }
+    })
+});
