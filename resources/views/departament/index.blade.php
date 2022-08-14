@@ -15,7 +15,7 @@
                                         <h3 class="card-title">Lista de departamentos</h3>
                                     </div>
                                     <div class="col-6" style="right: 0!important; position: absolute; display:flex; justify-content: end;">
-                                        <a href="#" class="btn btn-success"><i class="fas fa-plus"></i> Agregar Departamento</a>
+                                        <a href="#" class="btn btn-success" data-toggle="modal" data-target="#modal-default"><i class="fas fa-plus"></i> Agregar Departamento</a>
                                     </div>
                                 </div>
                             </div>
@@ -41,8 +41,6 @@
                                                     <a href="#" class="badge badge-success" title="Vér"><i class="fas fa-eye"></i></a>
                                                     <!-- Editar -->
                                                     <a href="#" class="badge badge-primary" title="Editar"><i class="fas fa-pencil-alt"></i></a>
-                                                    <!-- Eliminar
-                                                    <a href="#" class="badge badge-danger" title="Eliminar"><i class="fas fa-trash-alt"></i></a> -->
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -60,6 +58,39 @@
                     </div>
                     <!-- /.col -->
                 </div>
+                <!-- MODAL ADD DEPARTAMENT -->
+                    <div class="modal fade" id="modal-default">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Agregar Departamento</h4>
+                                    <button type="button" class="close" id="close7" name="close7" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{{ url('/departaments') }}" method="POST" id="formCreateDepartament" name="formCreateDepartament" onSubmit="return false;">
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <input type="hidden" value="{{csrf_token()}}" name="_token" id="token">
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Nombre departamento" id="txtNameDepartament" name="txtNameDepartament" required minlength="4" maxlength="45">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer justify-content-between">
+                                        <button type="button" id="close8" name="close8" class="btn btn-danger" data-dismiss="modal">Salir</button>
+                                        <button type="submit" class="btn btn-primary">Crear departamento</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                <!-- END MODAL ADD DEPARTAMENT -->
             </div>
         </section>
     @endsection

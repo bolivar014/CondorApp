@@ -38,7 +38,20 @@ class DepartamentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Creamos nuevo departamento 
+        $departament = new Departament();
+
+        $departament->departament = $request->get('txtNameDepartament');
+
+        // Guardamos
+        $departament->save();
+
+        // Validamos resultado de ejecución
+        if($departament) {
+            return response()->json('creado exitosamente');
+        } else {
+            return response()->json('no se ha creado exitosamente');
+        }
     }
 
     /**

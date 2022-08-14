@@ -276,6 +276,7 @@
         <script src="{{ asset('dist/js/pages/dashboard2.js') }}"></script>
         <!-- FUNCIONES JS -->
         <script src="{{ asset('js/functionEmployees.js') }}"></script>
+        <script src="{{ asset('js/functionDepartaments.js') }}"></script>
         <!-- CDN SWEET ALERT -->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </body>
