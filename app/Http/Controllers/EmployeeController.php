@@ -38,6 +38,23 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         //
+        $employee = new employee();
+
+        $employee->type_doc = $request->get('selTipoDoc');
+        $employee->num_doc = $request->get('txtNumDoc');
+        $employee->name = $request->get('txtName');
+        $employee->lastname = $request->get('txtLastname');
+        $employee->date_of_birth = $request->get('txtDateBirth');
+        $employee->departament_id = $request->get('selTipoDoc');
+
+        $employee->save();
+
+        if($employee) {
+            return response()->json('creado exitosamente');
+        } else {
+            return response()->json('no se ha creado exitosamente');
+        }
+
     }
 
     /**

@@ -65,9 +65,10 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form action="#" method="POST" onSubmit="return false;">
+                                <form action="{{ url('/employees') }}" method="POST" id="formCreateEmployee" name="formCreateEmployee" onSubmit="return false;">
                                     <div class="modal-body">
                                         <div class="row">
+                                            <input type="hidden" value="{{csrf_token()}}" name="_token" id="token">
                                             <div class="col-md-6">
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
