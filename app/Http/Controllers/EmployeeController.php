@@ -124,5 +124,14 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         //
+        $employee = employee::findOrFail($id);
+
+        $employee->delete();
+
+        if($employee) {
+            return response()->json('se elimino exitosamente');
+        } else {
+            return response()->json('no se elimino exitosamente');
+        }
     }
 }

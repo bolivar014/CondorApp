@@ -242,3 +242,81 @@ $('#close5, #close6').on('click', function() {
     $('#txtDateBirthEdit').val('');
     $('select[name="selTipoDepartamentEdit"]').prop('selectedIndex',0);
 });
+
+// Evento para la eliminación de empleado
+function deleteEmployee(id, URL) {
+    var _token = $("input[name=_token]").val();
+
+    // Ejecutamos ajax
+    $.ajax({
+        url: URL,
+        type: 'POST',
+        data: {
+            'id': id,
+            '_token': _token,
+            '_method': 'delete'
+        },
+        dataType: 'json',
+        success: function(response){
+            console.log('response - delete employee');
+            console.log(response);
+            
+            // Validamos la ejecución
+            if(response == "se elimino exitosamente") {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Se ha eliminado correctamente',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
+                // Refrezcamos interfaz
+                setTimeout(() => {
+                    location.reload();
+                }, 2000);
+            } else {
+                // Error cuando no se crea el registro
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Se ha presentado un error al intentar eliminar el registro',
+                })
+            }
+        },
+        error: function(resp){
+            console.log('error - delete employee');
+            console.log(resp.responseText);
+            /*
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Se ha presentado un error interno',
+            })
+            */
+        },
+    })
+}
+
+// Evento para la eliminación de empleados
+$('.deleteEmployee').click(function() {
+    let id = $(this).attr("data-idEmployee");
+    let URL = $(this).attr("data-empURL");
+
+    // opciones
+    Swal.fire({
+        icon: 'info',
+        title: 'Deseas eliminar el registro?',
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: 'SI',
+        denyButtonText: `NO`,
+    }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            deleteEmployee(id, URL);
+        } else if (result.isDenied) {
+            Swal.fire('Se ha anulado la eliminación', '', 'info')
+        }
+    })
+});

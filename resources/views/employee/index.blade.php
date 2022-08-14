@@ -41,8 +41,8 @@
                                                     <a href="#" class="badge badge-success detail" title="Vér" data-toggle="modal" data-idEmployee="{{ $employee->id }}" data-empURL="{{ url('/employees/' . $employee->id) }}" data-target="#modal-defaultShow"><i class="fas fa-eye"></i></a>
                                                     <!-- Editar -->
                                                     <a href="#" class="badge badge-primary editEmployee" title="Editar" data-toggle="modal" data-target="#modal-defaultEdit" data-idEmployee="{{ $employee->id }}" data-empURL="{{ url('/employees/' . $employee->id) }}"><i class="fas fa-pencil-alt"></i></a>
-                                                    <!-- Eliminar
-                                                    <a href="{{ url('') }}" class="badge badge-danger" title="Eliminar"><i class="fas fa-trash-alt"></i></a> -->
+                                                    <!-- Eliminar -->
+                                                    <a href="#" class="badge badge-danger deleteEmployee" title="Eliminar" data-idEmployee="{{ $employee->id }}" data-empURL="{{ url('/employees/' . $employee->id) }}"><i class="fas fa-trash-alt"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
