@@ -97,6 +97,22 @@ class EmployeeController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $employee = employee::findOrFail($id);
+
+        $employee->type_doc = $request->get('selTipoDocEdit');
+        $employee->num_doc = $request->get('txtNumDocEdit');
+        $employee->name = $request->get('txtNameEdit');
+        $employee->lastname = $request->get('txtLastnameEdit');
+        $employee->date_of_birth = $request->get('txtDateBirthEdit');
+        $employee->departament_id = $request->get('selTipoDepartamentEdit');
+
+        $employee->save();
+
+        if($employee) {
+            return response()->json('Actualizado exitosamente');
+        } else {
+            return response()->json('no se ha actualizado');
+        }
     }
 
     /**

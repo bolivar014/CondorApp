@@ -125,11 +125,14 @@ $('#close3, #close4').on('click', function(){
     $('#selTipoDepartamentShow').val('');
 });
 
-// 
+// Evento para la visualización de la información a editar
 $('.editEmployee').click(function() {
     let id = $(this).attr("data-idEmployee");
     let URL = $(this).attr("data-empURL");
     var _token = $("input[name=_token]").val();
+    
+    // console.log('Action: ' + URL);
+    document.getElementById('formEditEmployee').action = URL;
 
      // Ejecutamos ajax
      $.ajax({
@@ -141,9 +144,9 @@ $('.editEmployee').click(function() {
         },
         dataType: 'json',
         success: function(response) {
-            console.log('success - edit Employee');
-            console.log(response);
-
+            // console.log('success - edit Employee');
+            // console.log(response);
+            
             $('#selTipoDocEdit').val(response.type_doc);
             $('#txtNumDocEdit').val(response.num_doc);
             $('#txtNameEdit').val(response.name);
@@ -152,13 +155,91 @@ $('.editEmployee').click(function() {
             $('#selTipoDepartamentEdit').val(response.departament_id);
         },
         error: function(resp) {
-            console.log('error - edit employee');
-            console.log(resp.responseText);
-            // Swal.fire({
-            //     icon: 'error',
-            //     title: 'Oops...',
-            //     text: 'Se ha presentado un error interno',
-            // })
+            // console.log('error - edit employee');
+            // console.log(resp.responseText);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Se ha presentado un error interno',
+            })
         }
     })
+});
+
+// Evento para la actualización de empleados
+$('#formEditEmployee').on('submit', function(e) {
+    e.preventDefault();
+    // Recolectamos valores del formulario
+    var selTipoDocEdit = $('#selTipoDocEdit').val();
+    var txtNumDocEdit = $('#txtNumDocEdit').val();
+    var txtNameEdit = $('#txtNameEdit').val();
+    var txtLastnameEdit = $('#txtLastnameEdit').val();
+    var txtDateBirthEdit = $('#txtDateBirthEdit').val();
+    var selTipoDepartamentEdit = $('#selTipoDepartamentEdit').val();
+    var _token = $("input[name=_token]").val();
+    var action = document.getElementById('formEditEmployee').action;
+    
+    // Ejecutamos ajax
+    $.ajax({
+        url: action,
+        type: 'PUT',
+        data: {
+            'selTipoDocEdit': selTipoDocEdit,
+            'txtNumDocEdit': txtNumDocEdit,
+            'txtNameEdit': txtNameEdit,
+            'txtLastnameEdit': txtLastnameEdit,
+            'txtDateBirthEdit': txtDateBirthEdit,
+            'selTipoDepartamentEdit': selTipoDepartamentEdit,
+            '_token': _token
+        },
+        dataType: 'json',
+        success: function(response){
+            // console.log('response - editt employee');
+            // console.log(response);
+            
+            // Validamos la ejecución
+            if(response == "Actualizado exitosamente") {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Se ha actualizado correctamente',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
+                // Refrezcamos interfaz
+                setTimeout(() => {
+                    location.reload();
+                }, 2000);
+            } else {
+                // Error cuando no se crea el registro
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Se ha presentado un error al intentar actualizar el registro',
+                })
+            }
+        },
+        error: function(resp){
+            // console.log('error - editt employee');
+            // console.log(resp.responseText);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Se ha presentado un error interno',
+            })
+        },
+    })
+});
+
+// 
+$('#close5, #close6').on('click', function() {    
+    document.getElementById('formEditEmployee').action = "";
+
+    $('select[name="selTipoDocEdit"]').prop('selectedIndex',0);
+    $('#txtNumDocEdit').val('');
+    $('#txtNameEdit').val('');
+    $('#txtLastnameEdit').val('');
+    $('#txtDateBirthEdit').val('');
+    $('select[name="selTipoDepartamentEdit"]').prop('selectedIndex',0);
 });

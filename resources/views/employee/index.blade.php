@@ -230,13 +230,14 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h4 class="modal-title">Editar Empleado</h4>
-                                    <button type="button" class="close" id="close" name="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="close" id="close5" name="close5" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form action="{{ url('/employees') }}" method="POST" id="formCreateEmployee" name="formCreateEmployee" onSubmit="return false;">
+                                <form action="{{ url('/employees/') }}" method="POST" id="formEditEmployee" name="formEditEmployee" onSubmit="return false;">
                                     <div class="modal-body">
                                         <div class="row">
+                                            @method('put')
                                             <input type="hidden" value="{{csrf_token()}}" name="_token" id="token">
                                             <div class="col-md-6">
                                                 <div class="input-group mb-3">
@@ -307,7 +308,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer justify-content-between">
-                                        <button type="button" id="close2" name="close2" class="btn btn-danger" data-dismiss="modal">Salir</button>
+                                        <button type="button" id="close6" name="close6" class="btn btn-danger" data-dismiss="modal">Salir</button>
                                         <button type="submit" class="btn btn-primary">Editar empleado</button>
                                     </div>
                                 </form>
