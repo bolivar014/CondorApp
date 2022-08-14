@@ -130,9 +130,7 @@ $('.editEmployee').click(function() {
     let id = $(this).attr("data-idEmployee");
     let URL = $(this).attr("data-empURL");
     var _token = $("input[name=_token]").val();
-    
-    // console.log('Action: ' + URL);
-    document.getElementById('formEditEmployee').action = URL;
+    $('#urlEditEmployee').val(URL);
 
      // Ejecutamos ajax
      $.ajax({
@@ -146,7 +144,7 @@ $('.editEmployee').click(function() {
         success: function(response) {
             // console.log('success - edit Employee');
             // console.log(response);
-            
+
             $('#selTipoDocEdit').val(response.type_doc);
             $('#txtNumDocEdit').val(response.num_doc);
             $('#txtNameEdit').val(response.name);
@@ -177,7 +175,9 @@ $('#formEditEmployee').on('submit', function(e) {
     var txtDateBirthEdit = $('#txtDateBirthEdit').val();
     var selTipoDepartamentEdit = $('#selTipoDepartamentEdit').val();
     var _token = $("input[name=_token]").val();
-    var action = document.getElementById('formEditEmployee').action;
+    var action = $('#urlEditEmployee').val();
+    document.getElementById('formEditEmployee').action = action;
+    // var action = document.getElementById('formEditEmployee').action;
     
     // Ejecutamos ajax
     $.ajax({
@@ -223,6 +223,7 @@ $('#formEditEmployee').on('submit', function(e) {
         error: function(resp){
             // console.log('error - editt employee');
             // console.log(resp.responseText);
+
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -232,10 +233,8 @@ $('#formEditEmployee').on('submit', function(e) {
     })
 });
 
-// 
-$('#close5, #close6').on('click', function() {    
-    document.getElementById('formEditEmployee').action = "";
-
+// Limpiamos campos de formulario editar
+$('#close5, #close6').on('click', function() {
     $('select[name="selTipoDocEdit"]').prop('selectedIndex',0);
     $('#txtNumDocEdit').val('');
     $('#txtNameEdit').val('');

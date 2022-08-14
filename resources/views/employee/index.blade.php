@@ -40,7 +40,7 @@
                                                     <!-- Ver -->
                                                     <a href="#" class="badge badge-success detail" title="Vér" data-toggle="modal" data-idEmployee="{{ $employee->id }}" data-empURL="{{ url('/employees/' . $employee->id) }}" data-target="#modal-defaultShow"><i class="fas fa-eye"></i></a>
                                                     <!-- Editar -->
-                                                    <a href="#" class="badge badge-primary editEmployee" title="Editar" data-toggle="modal" data-target="#modal-defaultEdit" data-idEmployee="{{ $employee->id }}" data-empURL="{{ url('/employees/' . $employee->id . '/edit') }}"><i class="fas fa-pencil-alt"></i></a>
+                                                    <a href="#" class="badge badge-primary editEmployee" title="Editar" data-toggle="modal" data-target="#modal-defaultEdit" data-idEmployee="{{ $employee->id }}" data-empURL="{{ url('/employees/' . $employee->id) }}"><i class="fas fa-pencil-alt"></i></a>
                                                     <!-- Eliminar
                                                     <a href="{{ url('') }}" class="badge badge-danger" title="Eliminar"><i class="fas fa-trash-alt"></i></a> -->
                                                 </td>
@@ -234,10 +234,12 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form action="{{ url('/employees/') }}" method="POST" id="formEditEmployee" name="formEditEmployee" onSubmit="return false;">
+                                <form action="#" method="POST" id="formEditEmployee" name="formEditEmployee" onSubmit="return false;">
                                     <div class="modal-body">
                                         <div class="row">
                                             @method('put')
+                                            <input type="text" id="urlEditEmployee" name="urlEditEmployee" class="form-control" placeholder="URL">
+                                            {{ method_field('put') }}
                                             <input type="hidden" value="{{csrf_token()}}" name="_token" id="token">
                                             <div class="col-md-6">
                                                 <div class="input-group mb-3">
