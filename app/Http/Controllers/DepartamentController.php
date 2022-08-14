@@ -7,6 +7,10 @@ use App\Models\Departament;
 
 class DepartamentController extends Controller
 {
+    // Middleware de auth
+    public function __construct() {
+        return $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
