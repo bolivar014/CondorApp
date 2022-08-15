@@ -38,7 +38,7 @@
                                                 <td>{{ $departament->created_at }}</td>
                                                 <td>
                                                     <!-- Ver -->
-                                                    <a href="#" class="badge badge-success" title="Vér"><i class="fas fa-eye"></i></a>
+                                                    <a href="#" class="badge badge-success showDetail" title="Vér" data-toggle="modal" data-target="#modal-defaultShow" data-idDepartament="{{ $departament->id }}" data-empURL="{{ url('/departaments/' . $departament->id) }}"><i class="fas fa-eye"></i></a>
                                                     <!-- Editar -->
                                                     <a href="#" class="badge badge-primary editDepartament" title="Editar" data-toggle="modal" data-target="#modal-defaultEdit" data-idDepartament="{{ $departament->id }}" data-empURL="{{ url('/departaments/' . $departament->id) }}"><i class="fas fa-pencil-alt"></i></a>
                                                 </td>
@@ -126,6 +126,36 @@
                         </div>
                     </div>
                 <!-- END MODAL EDIT DEPARTAMENT -->
+                <!-- MODAL SHOW DEPARTAMENT -->
+                    <div class="modal fade" id="modal-defaultShow">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Ver Departamento</h4>
+                                    <button type="button" class="close" id="close7" name="close7" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <input type="hidden" id="urlShowDepartament" name="urlShowDepartament" class="form-control" placeholder="URL">
+                                            <div class="col-md-6">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-hashtag"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" placeholder="Nombre departamento" id="txtNameDepartamentShow" name="txtNameDepartamentShow" readonly minlength="4" maxlength="45">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer justify-content-between">
+                                        <button type="button" id="close8" name="close8" class="btn btn-danger" data-dismiss="modal">Salir</button>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- END MODAL SHOW DEPARTAMENT -->
             </div>
         </section>
     @endsection
